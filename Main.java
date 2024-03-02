@@ -5,20 +5,20 @@ import java.util.ArrayList;
 
 public class Main{
     public static void main(String[] args){
-        
+        String line = "";
         try {
             File file = new File("matrixDimensions.txt");
             Scanner scanner = new Scanner(file);
             ArrayList<Integer> dimensions = new ArrayList<Integer>();
             while (scanner.hasNextLine()){
-                String line = scanner.nextLine();
+                line = scanner.nextLine();
                 dimensions.add(Integer.valueOf(line));
             }
             scanner.close();
         } catch (FileNotFoundException e){
             System.out.println("No file named 'matrixDimensions.txt' found");
         } catch (NumberFormatException e){
-            System.out.println("Input file contains non-numerical char");
+            System.out.println("Input file contains non-numerical char: " + line);
         }
     }
 }
