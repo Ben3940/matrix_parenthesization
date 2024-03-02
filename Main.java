@@ -21,4 +21,19 @@ public class Main{
             System.out.println("Input file contains non-numerical char: " + line);
         }
     }
+
+    public void Matrix_Chain_Order(ArrayList<Integer> p){
+        int n = p.size() - 1;
+
+        // Create multiplication counts array with initial values of 0
+        int[][] m = new int[n][n];
+        for (int i = 0; i < n; i++){
+            for (int j = 0; j < n; j++){
+                m[i][j] = 0;
+            }
+        }
+
+        
+
+    }
 }
