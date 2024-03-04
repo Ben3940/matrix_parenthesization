@@ -44,22 +44,11 @@ public class Main{
                             s[i][j] = k;
                         }
                     }
+                    PrintOptimalParens(m, s);
                 }
             }
             
-            for (int i = 1; i < m.length;i++){
-                for (int j = 1; j < m[i].length; j++){
-                    System.out.printf("%5d ", m[i][j]);
-                }
-                System.out.println("");
-            }
-            System.out.println("");
-            for (int i = 1; i < s.length;i++){
-                for (int j = 1; j < s[i].length; j++){
-                    System.out.print(s[i][j] + " ");
-                }
-                System.out.println("");
-            }
+            
 
             scanner.close();
         } catch (FileNotFoundException e){
@@ -67,6 +56,25 @@ public class Main{
         } catch (NumberFormatException e){
             System.out.println("Input file contains non-numerical char: " + line);
         }
+    }
+
+    public static void PrintOptimalParens(int[][] m, int[][] s){
+        System.out.println("m array (1 to n)");
+        for (int i = 1; i < m.length;i++){
+            for (int j = 1; j < m[i].length; j++){
+                System.out.printf("%5d ", m[i][j]);
+            }
+            System.out.println("");
+        }
+        System.out.println("");
+        System.out.println("s array (1 to n)");
+        for (int i = 1; i < s.length;i++){
+            for (int j = 1; j < s[i].length; j++){
+                System.out.printf("%5d ", s[i][j]);
+            }
+            System.out.println("");
+        }
+        System.out.println("");
     }
 
 }
