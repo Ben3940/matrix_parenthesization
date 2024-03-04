@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 public class Main{
     public static void main(String[] args){
@@ -11,8 +12,16 @@ public class Main{
             Scanner scanner = new Scanner(file);
             ArrayList<Integer> dimensions = new ArrayList<Integer>();
             while (scanner.hasNextLine()){
-                line = scanner.nextLine();
-                dimensions.add(Integer.valueOf(line));
+                try {
+                    line = scanner.next();
+                    dimensions.add(Integer.valueOf(line));
+                } catch (NoSuchElementException e){
+                    continue;
+                } catch (NumberFormatException e){
+                    System.out.println("Input file contains non-numerical char: " + line);
+                    scanner.close();
+                    return;
+                }
             }
             int n = dimensions.size() - 1;
             System.out.println(n);
@@ -53,8 +62,6 @@ public class Main{
             scanner.close();
         } catch (FileNotFoundException e){
             System.out.println("No file named 'matrixDimensions.txt' found");
-        } catch (NumberFormatException e){
-            System.out.println("Input file contains non-numerical char: " + line);
         }
     }
 
