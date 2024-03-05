@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 public class Main{
     public static void main(String[] args){
@@ -11,8 +12,16 @@ public class Main{
             Scanner scanner = new Scanner(file);
             ArrayList<Integer> dimensions = new ArrayList<Integer>();
             while (scanner.hasNextLine()){
-                line = scanner.nextLine();
-                dimensions.add(Integer.valueOf(line));
+                try {
+                    line = scanner.next();
+                    dimensions.add(Integer.valueOf(line));
+                } catch (NoSuchElementException e){
+                    continue;
+                } catch (NumberFormatException e){
+                    System.out.println("Input file contains non-numerical char: " + line);
+                    scanner.close();
+                    return;
+                }
             }
             int n = dimensions.size() - 1;
             System.out.println(n);
@@ -44,29 +53,35 @@ public class Main{
                             s[i][j] = k;
                         }
                     }
+                    PrintOptimalParens(m, s);
                 }
             }
             
-            for (int i = 1; i < m.length;i++){
-                for (int j = 1; j < m[i].length; j++){
-                    System.out.printf("%5d ", m[i][j]);
-                }
-                System.out.println("");
-            }
-            System.out.println("");
-            for (int i = 1; i < s.length;i++){
-                for (int j = 1; j < s[i].length; j++){
-                    System.out.print(s[i][j] + " ");
-                }
-                System.out.println("");
-            }
+            
 
             scanner.close();
         } catch (FileNotFoundException e){
             System.out.println("No file named 'matrixDimensions.txt' found");
-        } catch (NumberFormatException e){
-            System.out.println("Input file contains non-numerical char: " + line);
         }
+    }
+
+    public static void PrintOptimalParens(int[][] m, int[][] s){
+        System.out.println("m array (1 to n)");
+        for (int i = 1; i < m.length;i++){
+            for (int j = 1; j < m[i].length; j++){
+                System.out.printf("%5d ", m[i][j]);
+            }
+            System.out.println("");
+        }
+        System.out.println("");
+        System.out.println("s array (1 to n)");
+        for (int i = 1; i < s.length;i++){
+            for (int j = 1; j < s[i].length; j++){
+                System.out.printf("%5d ", s[i][j]);
+            }
+            System.out.println("");
+        }
+        System.out.println("");
     }
 
 }
