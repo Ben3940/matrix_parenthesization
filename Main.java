@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+import java.util.Stack;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
@@ -46,8 +47,10 @@ public class Main{
                         int multi_counts = m[i][k] + m[k+1][j] + dimensions.get(i-1) * dimensions.get(k) * dimensions.get(j);
                         // System.out.println("L: " + L + " j: " + j + " k: " + k + " Counts: " + multi_counts);
                         if (m[i][j] != 0){
-                            m[i][j] = Math.min(multi_counts, m[i][j]);
-                            s[i][j] = k;
+                            if (multi_counts < m[i][j]){
+                                m[i][j] = multi_counts;
+                                s[i][j] = k;
+                            }
                         } else {
                             m[i][j] = multi_counts;
                             s[i][j] = k;
@@ -84,4 +87,9 @@ public class Main{
         System.out.println("");
     }
 
+    public static void PrintInfixPostfix(int[][] s){
+        Stack<String> stack = new Stack<String>();
+
+
+    }
 }
