@@ -59,6 +59,8 @@ public class Main{
                     PrintOptimalParens(m, s);
                 }
             }
+
+            PrintInfixPostfix(1, n, n, s);
             
             
 
@@ -87,8 +89,17 @@ public class Main{
         System.out.println("");
     }
 
-    public static void PrintInfixPostfix(int[][] s){
-        Stack<String> stack = new Stack<String>();
+    public static void PrintInfixPostfix(int i, int j, int n, int[][] s){
+        
+        if (i == j){
+            System.out.print("A" + (i));
+            return;
+        }
+
+        System.out.print("(");
+        PrintInfixPostfix(i, s[i][j], n, s);
+        PrintInfixPostfix(s[i][j] + 1, j, n, s);
+        System.out.print(")");
 
 
     }
