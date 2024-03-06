@@ -5,9 +5,11 @@ import java.util.Stack;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
+
 public class Main{
     public static void main(String[] args){
         String line = "";
+        OptimalParens optPrens = new OptimalParens();
         try {
             File file = new File("matrixDimensions.txt");
             Scanner scanner = new Scanner(file);
@@ -56,11 +58,11 @@ public class Main{
                             s[i][j] = k;
                         }
                     }
-                    PrintOptimalParens(m, s);
+                    optPrens.PrintMSTables(m, s);
                 }
             }
 
-            PrintInfixPostfix(s, 1, n);
+            optPrens.PrintOptimalParens(s, 1, n);
             
             
 
@@ -70,38 +72,5 @@ public class Main{
         }
     }
 
-    public static void PrintOptimalParens(int[][] m, int[][] s){
-        System.out.println("m array (1 to n)");
-        for (int i = 1; i < m.length;i++){
-            for (int j = 1; j < m[i].length; j++){
-                System.out.printf("%5d ", m[i][j]);
-            }
-            System.out.println("");
-        }
-        System.out.println("");
-        System.out.println("s array (1 to n)");
-        for (int i = 1; i < s.length;i++){
-            for (int j = 1; j < s[i].length; j++){
-                System.out.printf("%5d ", s[i][j]);
-            }
-            System.out.println("");
-        }
-        System.out.println("");
-    }
 
-    public static void PrintInfixPostfix(int[][] s, int i, int j){
-        
-        if (i == j){
-            System.out.print("A" + i);
-            return;
-        }
-
-        System.out.print("(");
-        PrintInfixPostfix(s, i, s[i][j]);
-        System.out.print("*");
-        PrintInfixPostfix(s, s[i][j] + 1, j);
-        System.out.print(")");
-
-
-    }
 }
