@@ -60,7 +60,7 @@ public class Main{
                 }
             }
 
-            PrintInfixPostfix(1, n, n, s);
+            PrintInfixPostfix(s, 1, n);
             
             
 
@@ -89,16 +89,17 @@ public class Main{
         System.out.println("");
     }
 
-    public static void PrintInfixPostfix(int i, int j, int n, int[][] s){
+    public static void PrintInfixPostfix(int[][] s, int i, int j){
         
         if (i == j){
-            System.out.print("A" + (i));
+            System.out.print("A" + i);
             return;
         }
 
         System.out.print("(");
-        PrintInfixPostfix(i, s[i][j], n, s);
-        PrintInfixPostfix(s[i][j] + 1, j, n, s);
+        PrintInfixPostfix(s, i, s[i][j]);
+        System.out.print("*");
+        PrintInfixPostfix(s, s[i][j] + 1, j);
         System.out.print(")");
 
 
