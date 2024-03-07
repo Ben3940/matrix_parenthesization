@@ -1,12 +1,15 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+import java.util.Stack;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
+
 
 public class Main{
     public static void main(String[] args){
         String line = "";
+        OptimalParens optPrens = new OptimalParens();
         try {
             File file = new File("matrixDimensions.txt");
             Scanner scanner = new Scanner(file);
@@ -46,16 +49,26 @@ public class Main{
                         int multi_counts = m[i][k] + m[k+1][j] + dimensions.get(i-1) * dimensions.get(k) * dimensions.get(j);
                         // System.out.println("L: " + L + " j: " + j + " k: " + k + " Counts: " + multi_counts);
                         if (m[i][j] != 0){
-                            m[i][j] = Math.min(multi_counts, m[i][j]);
-                            s[i][j] = k;
+                            if (multi_counts < m[i][j]){
+                                m[i][j] = multi_counts;
+                                s[i][j] = k;
+                            }
                         } else {
                             m[i][j] = multi_counts;
                             s[i][j] = k;
                         }
                     }
-                    PrintOptimalParens(m, s);
+                    optPrens.PrintMSTables(m, s);
                 }
             }
+
+            System.out.println("The optimal parenthesization:");
+            System.out.print("Infix: ");
+            optPrens.PrintOptimalParens(s, 1, n);
+            System.out.print("\nPostfix: ");
+            optPrens.PrintPostfix(s, 1, n);
+            System.out.println("");
+            optPrens.PrintMatrixDimensions(dimensions);
             
             
 
@@ -65,23 +78,5 @@ public class Main{
         }
     }
 
-    public static void PrintOptimalParens(int[][] m, int[][] s){
-        System.out.println("m array (1 to n)");
-        for (int i = 1; i < m.length;i++){
-            for (int j = 1; j < m[i].length; j++){
-                System.out.printf("%5d ", m[i][j]);
-            }
-            System.out.println("");
-        }
-        System.out.println("");
-        System.out.println("s array (1 to n)");
-        for (int i = 1; i < s.length;i++){
-            for (int j = 1; j < s[i].length; j++){
-                System.out.printf("%5d ", s[i][j]);
-            }
-            System.out.println("");
-        }
-        System.out.println("");
-    }
 
 }
