@@ -62,7 +62,13 @@ public class Main{
                 }
             }
 
+            System.out.println("The optimal parenthesization:");
+            System.out.print("Infix: ");
             optPrens.PrintOptimalParens(s, 1, n);
+            System.out.print("\nPostfix: ");
+            optPrens.PrintPostfix(s, 1, n);
+            System.out.println("");
+            optPrens.PrintMatrixDimensions(dimensions);
             
             
 

@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class OptimalParens {
 
     public void PrintMSTables(int[][] m, int[][] s){
@@ -30,5 +32,22 @@ public class OptimalParens {
         System.out.print("*");
         PrintOptimalParens(s, s[i][j] + 1, j);
         System.out.print(")");
+    }
+
+    public void PrintPostfix(int[][] s, int i, int j){
+        if (i == j){
+            System.out.print("A" + i);
+            return;
+        }
+
+        PrintPostfix(s, i, s[i][j]);
+        PrintPostfix(s, s[i][j] + 1, j);
+        System.out.print("*");
+    }
+
+    public void PrintMatrixDimensions(ArrayList<Integer> dimensions){
+        for (int i = 0; i < dimensions.size() - 1; i++){
+            System.out.printf("Matrix %d: %d x %d\n", i + 1, dimensions.get(i), dimensions.get(i + 1));
+        }
     }
 }
