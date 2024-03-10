@@ -1,0 +1,44 @@
+MATRIX DIMENSIONS
+Matrix 1: 11 x 5
+Matrix 2: 5 x 3
+Matrix 3: 3 x 4
+Matrix 4: 4 x 8
+Matrix 5: 8 x 12
+
+
+BEST CASE:
+m array (1 to n)
+    0   165   280   525   945 
+    0     0    60   216   564 
+    0     0     0    96   384 
+    0     0     0     0   384 
+    0     0     0     0     0 
+s array (1 to n)
+    0     1     1     2     2 
+    0     0     2     2     2 
+    0     0     0     3     4 
+    0     0     0     0     4 
+    0     0     0     0     0 
+
+The optimal parenthesization:
+Infix: ((A1*A2)*((A3*A4)*A5))
+Postfix: A1A2*A3A4*A5**
+
+
+WORSE CASE:
+m array (1 to n)
+    0   165   297   660  1716 
+    0     0    60   220   708 
+    0     0     0    96   528 
+    0     0     0     0   384 
+    0     0     0     0     0 
+s array (1 to n)
+    0     1     2     1     4 
+    0     0     2     3     2 
+    0     0     0     3     3 
+    0     0     0     0     4 
+    0     0     0     0     0 
+
+The worst parenthesization:
+Infix: ((A1*((A2*A3)*A4))*A5)
+Postfix: A1A2A3*A4**A5*
